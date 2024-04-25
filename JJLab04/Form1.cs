@@ -49,7 +49,7 @@ namespace JJLab04
             if (okienko.ShowDialog() == DialogResult.OK && okienko.CheckFileExists == true)
                 pictureBoxOriginal.Image = Image.FromFile(okienko.FileName);
             obrazekOrginal = (Bitmap)pictureBoxOriginal.Image;
-            obrazekCopy = obrazekOrginal;
+            obrazekCopy = new Bitmap(obrazekOrginal);
             wysokosc = obrazekCopy.Height;
             szerokosc = obrazekCopy.Width;
             pictureBoxResult.Image = obrazekCopy;
@@ -61,48 +61,7 @@ namespace JJLab04
 
         }
 
-        private void Red_Click(object sender, EventArgs e)
-        {
-            Color pxl;
-            for(int i = 0; i < wysokosc; i++)
-            {
-                for(int j = 0; j < szerokosc; j++)
-                {
-                    pxl = Color.FromArgb(255, 0, 0);
-                    obrazekCopy.SetPixel(i, j, pxl);
-                }
-            }
-            pictureBoxResult.Image = obrazekCopy;   
-
-        }
-
-        private void Green_Click(object sender, EventArgs e)
-        {
-            Color pxl;
-            for (int i = 0; i < wysokosc; i++)
-            {
-                for (int j = 0; j < szerokosc; j++)
-                {
-                    pxl = Color.FromArgb(0, 255, 0);
-                    obrazekCopy.SetPixel(i, j, pxl);
-                }
-            }
-            pictureBoxResult.Image = obrazekCopy;
-        }
-
-        private void Blue_Click(object sender, EventArgs e)
-        {
-            Color pxl;
-            for (int i = 0; i < wysokosc; i++)
-            {
-                for (int j = 0; j < szerokosc; j++)
-                {
-                    pxl = Color.FromArgb(0, 0, 255);
-                    obrazekCopy.SetPixel(i, j, pxl);
-                }
-            }
-            pictureBoxResult.Image = obrazekCopy;
-        }
+     
 
         private void Zapisz_Click(object sender, EventArgs e)
         {
@@ -117,6 +76,88 @@ namespace JJLab04
         }
 
         private void Reset_Click(object sender, EventArgs e)
+        {
+            obrazekCopy = new Bitmap(obrazekOrginal);
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int R;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    R = pxl.R;
+
+                    pxl = Color.FromArgb(R, 0, 0);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int G;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    G = pxl.G;
+                    pxl = Color.FromArgb(0, G, 0);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int B; ;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    B = pxl.B;
+                    pxl = Color.FromArgb(0, 0, B);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void Zeruj_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = Color.FromArgb(0, 0, 0);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void pictureBoxResult_Click(object sender, EventArgs e)
         {
 
         }
