@@ -42,6 +42,11 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.hSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metodaSredniejToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zModeluYUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -130,7 +135,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuLab01});
+            this.MenuLab01,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(903, 25);
@@ -171,6 +177,49 @@
             this.toolStripMenuItem3.Text = "B";
             this.toolStripMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hSVToolStripMenuItem,
+            this.yUVToolStripMenuItem,
+            this.metodaSredniejToolStripMenuItem,
+            this.zModeluYUVToolStripMenuItem});
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButton1.Text = "Lab02";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // hSVToolStripMenuItem
+            // 
+            this.hSVToolStripMenuItem.Name = "hSVToolStripMenuItem";
+            this.hSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hSVToolStripMenuItem.Text = "HSV";
+            this.hSVToolStripMenuItem.Click += new System.EventHandler(this.hSVToolStripMenuItem_Click);
+            // 
+            // yUVToolStripMenuItem
+            // 
+            this.yUVToolStripMenuItem.Name = "yUVToolStripMenuItem";
+            this.yUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yUVToolStripMenuItem.Text = "YUV";
+            this.yUVToolStripMenuItem.Click += new System.EventHandler(this.yUVToolStripMenuItem_Click);
+            // 
+            // metodaSredniejToolStripMenuItem
+            // 
+            this.metodaSredniejToolStripMenuItem.Name = "metodaSredniejToolStripMenuItem";
+            this.metodaSredniejToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.metodaSredniejToolStripMenuItem.Text = "Metoda sredniej";
+            this.metodaSredniejToolStripMenuItem.Click += new System.EventHandler(this.metodaSredniejToolStripMenuItem_Click);
+            // 
+            // zModeluYUVToolStripMenuItem
+            // 
+            this.zModeluYUVToolStripMenuItem.Name = "zModeluYUVToolStripMenuItem";
+            this.zModeluYUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zModeluYUVToolStripMenuItem.Text = "Z modelu YUV";
+            this.zModeluYUVToolStripMenuItem.Click += new System.EventHandler(this.zModeluYUVToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -213,6 +262,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem hSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yUVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metodaSredniejToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zModeluYUVToolStripMenuItem;
     }
 }
 

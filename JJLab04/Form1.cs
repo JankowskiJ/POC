@@ -161,5 +161,74 @@ namespace JJLab04
         {
 
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            float[] hsv = new float[3];
+            
+
+        }
+
+        private void yUVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void metodaSredniejToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary;
+            int R;
+            int G;
+            int B;
+
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    R = pxl.R;
+                    G = pxl.G;
+                    B = pxl.B;
+                    szary = (R + G + B) / 3;
+                    pxl = Color.FromArgb(szary, szary, szary);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void zModeluYUVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary;
+            double R,G,B;
+            int Ri, Gi, Bi;
+
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    R = pxl.R*0.299;
+                    G = pxl.G*0.587;
+                    B = pxl.B*0.114;
+                    Ri = (int)Math.Round(R);
+                    Gi = (int)Math.Round(G);
+                    Bi = (int)Math.Round(B);
+
+                    szary = (Ri+Gi+Bi);
+                    pxl = Color.FromArgb(szary, szary, szary);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
     }
 }
