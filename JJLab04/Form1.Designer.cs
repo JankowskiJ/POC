@@ -47,6 +47,8 @@
             this.yUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodaSredniejToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zModeluYUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -136,7 +138,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuLab01,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(903, 25);
@@ -221,6 +224,24 @@
             this.zModeluYUVToolStripMenuItem.Text = "Z modelu YUV";
             this.zModeluYUVToolStripMenuItem.Click += new System.EventHandler(this.zModeluYUVToolStripMenuItem_Click);
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progowanieToolStripMenuItem});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(54, 22);
+            this.toolStripSplitButton1.Text = "Lab03";
+            // 
+            // progowanieToolStripMenuItem
+            // 
+            this.progowanieToolStripMenuItem.Name = "progowanieToolStripMenuItem";
+            this.progowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.progowanieToolStripMenuItem.Text = "Progowanie";
+            this.progowanieToolStripMenuItem.Click += new System.EventHandler(this.progowanieToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +288,8 @@
         private System.Windows.Forms.ToolStripMenuItem yUVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodaSredniejToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zModeluYUVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem progowanieToolStripMenuItem;
     }
 }
 

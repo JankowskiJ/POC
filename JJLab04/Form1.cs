@@ -17,6 +17,8 @@ namespace JJLab04
         Bitmap obrazekCopy;
         int wysokosc;
         int szerokosc;
+        public static int prog = 0;
+        public static bool isAtuomatic = false;
         public Form1()
         {
             InitializeComponent();
@@ -229,6 +231,52 @@ namespace JJLab04
                 }
             }
             pictureBoxResult.Image = obrazekCopy;
+        }
+
+
+        private void progowanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProgowaniePopUp progowanie = new ProgowaniePopUp();
+            progowanie.ShowDialog();
+
+            if(isAtuomatic == true)
+            {
+
+            }
+            else
+            {
+                Color pxl;
+                int szary;
+                double R, G, B;
+                int Ri, Gi, Bi;
+
+                for (int i = 0; i < wysokosc; i++)
+                {
+                    for (int j = 0; j < szerokosc; j++)
+                    {
+                        pxl = obrazekCopy.GetPixel(j, i);
+                        R = pxl.R * 0.299;
+                        G = pxl.G * 0.587;
+                        B = pxl.B * 0.114;
+                        Ri = (int)Math.Round(R);
+                        Gi = (int)Math.Round(G);
+                        Bi = (int)Math.Round(B);
+
+                        szary = (Ri + Gi + Bi);
+
+                        if(szary >= prog) {
+                            pxl = Color.FromArgb(255, 255, 255);
+                        }
+                        else
+                        {
+                            pxl = Color.FromArgb(0, 0, 0);
+                        }
+                        obrazekCopy.SetPixel(j, i, pxl);
+                    }
+                }
+                pictureBoxResult.Image = obrazekCopy;
+            }
+
         }
     }
 }
