@@ -49,9 +49,14 @@
             this.zModeluYUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.odejmowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PictureButton3 = new System.Windows.Forms.Button();
+            this.pictureBoxOdejm = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOdejm)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxResult
@@ -139,7 +144,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuLab01,
             this.toolStripButton1,
-            this.toolStripSplitButton1});
+            this.toolStripSplitButton1,
+            this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(903, 25);
@@ -199,28 +205,28 @@
             // hSVToolStripMenuItem
             // 
             this.hSVToolStripMenuItem.Name = "hSVToolStripMenuItem";
-            this.hSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hSVToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.hSVToolStripMenuItem.Text = "HSV";
             this.hSVToolStripMenuItem.Click += new System.EventHandler(this.hSVToolStripMenuItem_Click);
             // 
             // yUVToolStripMenuItem
             // 
             this.yUVToolStripMenuItem.Name = "yUVToolStripMenuItem";
-            this.yUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yUVToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.yUVToolStripMenuItem.Text = "YUV";
             this.yUVToolStripMenuItem.Click += new System.EventHandler(this.yUVToolStripMenuItem_Click);
             // 
             // metodaSredniejToolStripMenuItem
             // 
             this.metodaSredniejToolStripMenuItem.Name = "metodaSredniejToolStripMenuItem";
-            this.metodaSredniejToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.metodaSredniejToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.metodaSredniejToolStripMenuItem.Text = "Metoda sredniej";
             this.metodaSredniejToolStripMenuItem.Click += new System.EventHandler(this.metodaSredniejToolStripMenuItem_Click);
             // 
             // zModeluYUVToolStripMenuItem
             // 
             this.zModeluYUVToolStripMenuItem.Name = "zModeluYUVToolStripMenuItem";
-            this.zModeluYUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zModeluYUVToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.zModeluYUVToolStripMenuItem.Text = "Z modelu YUV";
             this.zModeluYUVToolStripMenuItem.Click += new System.EventHandler(this.zModeluYUVToolStripMenuItem_Click);
             // 
@@ -242,11 +248,50 @@
             this.progowanieToolStripMenuItem.Text = "Progowanie";
             this.progowanieToolStripMenuItem.Click += new System.EventHandler(this.progowanieToolStripMenuItem_Click);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.odejmowanieToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(51, 22);
+            this.toolStripDropDownButton1.Text = "Lab04";
+            // 
+            // odejmowanieToolStripMenuItem
+            // 
+            this.odejmowanieToolStripMenuItem.Name = "odejmowanieToolStripMenuItem";
+            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.odejmowanieToolStripMenuItem.Text = "Odejmowanie";
+            this.odejmowanieToolStripMenuItem.Click += new System.EventHandler(this.odejmowanieToolStripMenuItem_Click);
+            // 
+            // PictureButton3
+            // 
+            this.PictureButton3.Location = new System.Drawing.Point(462, 425);
+            this.PictureButton3.Name = "PictureButton3";
+            this.PictureButton3.Size = new System.Drawing.Size(148, 23);
+            this.PictureButton3.TabIndex = 13;
+            this.PictureButton3.Text = "Wgraj Odejmowany obraz";
+            this.PictureButton3.UseVisualStyleBackColor = true;
+            this.PictureButton3.Click += new System.EventHandler(this.PictureButton3_Click);
+            // 
+            // pictureBoxOdejm
+            // 
+            this.pictureBoxOdejm.Location = new System.Drawing.Point(616, 383);
+            this.pictureBoxOdejm.Name = "pictureBoxOdejm";
+            this.pictureBoxOdejm.Size = new System.Drawing.Size(170, 128);
+            this.pictureBoxOdejm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxOdejm.TabIndex = 14;
+            this.pictureBoxOdejm.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 572);
+            this.Controls.Add(this.pictureBoxOdejm);
+            this.Controls.Add(this.PictureButton3);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ResetT);
             this.Controls.Add(this.Zapisz);
@@ -263,6 +308,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOdejm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +336,10 @@
         private System.Windows.Forms.ToolStripMenuItem zModeluYUVToolStripMenuItem;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem progowanieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem odejmowanieToolStripMenuItem;
+        private System.Windows.Forms.Button PictureButton3;
+        private System.Windows.Forms.PictureBox pictureBoxOdejm;
     }
 }
 

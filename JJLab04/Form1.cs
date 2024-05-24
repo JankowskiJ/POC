@@ -15,6 +15,8 @@ namespace JJLab04
     {
         Bitmap obrazekOrginal;
         Bitmap obrazekCopy;
+        Bitmap obrazekOdejm;
+        int obrazekOdejmW, obrazekOdejmS;
         int wysokosc;
         int szerokosc;
         public static int prog = 0;
@@ -277,6 +279,57 @@ namespace JJLab04
                 pictureBoxResult.Image = obrazekCopy;
             }
 
+        }
+
+        private void odejmowanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary,szary2,szary3;
+            double R, G, B;
+            int Ri, Gi, Bi;
+
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    R = pxl.R * 0.299;
+                    G = pxl.G * 0.587;
+                    B = pxl.B * 0.114;
+                    Ri = (int)Math.Round(R);
+                    Gi = (int)Math.Round(G);
+                    Bi = (int)Math.Round(B);
+                    szary = (Ri + Gi + Bi);
+
+                    pxl = obrazekOdejm.GetPixel(j, i);
+                    R = pxl.R * 0.299;
+                    G = pxl.G * 0.587;
+                    B = pxl.B * 0.114;
+                    Ri = (int)Math.Round(R);
+                    Gi = (int)Math.Round(G);
+                    Bi = (int)Math.Round(B);
+                    szary2 = (Ri + Gi + Bi);
+
+                    szary3 = szary - szary2;
+                    if (szary3 < 0)
+                    {
+                        szary3 = 0;
+                    }
+
+                    pxl = Color.FromArgb(szary3, szary3, szary3);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void PictureButton3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog okienko = new OpenFileDialog();
+            okienko.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp|TIFF|*.tif";
+            if (okienko.ShowDialog() == DialogResult.OK && okienko.CheckFileExists == true)
+                pictureBoxOdejm.Image = Image.FromFile(okienko.FileName);
+            obrazekOdejm = (Bitmap)pictureBoxOdejm.Image;
         }
     }
 }
