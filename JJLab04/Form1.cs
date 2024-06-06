@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace JJLab04
 {
@@ -26,9 +27,38 @@ namespace JJLab04
             InitializeComponent();
         }
 
+        private static void FromRGBtoHSV(Color orginal,out double hue,out double saturation,out double value)
+        {
+            hue = orginal.GetHue();
+            saturation = orginal.GetSaturation();
+            value = orginal.GetBrightness();
+        }
+
+        private static void FromRGBtoYUV(Color orginal, out int y, out double u, out double v)
+        {
+            double yDouble = (orginal.R * 0.299 + orginal.G * 0.587 + orginal.B * 0.114);
+            y = (int)Math.Round(yDouble);
+            u = (0.493 * (orginal.B - y));
+            v = (0.877 * (orginal.R - y));
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            chart1.ChartAreas[0].AxisX.Title = "Odcień szarości";
+            chart1.ChartAreas[0].AxisY.Title = "Liczba pikseli";
+            chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chart1.ChartAreas[0].AxisX.Interval = 10;
+            chart1.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "#";
+            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "#";
 
+            chart1.ChartAreas[0].BackColor = Color.White;
+            chart1.Legends.Clear();
+            chart1.Series["Szarosc"].IsValueShownAsLabel = false;
+            chart1.Series["Szarosc"].BorderWidth = 1;
+            chart1.Titles.Add("Histogram Szarości");
+            chart1.Titles[0].Font = new Font("Arial", 16, FontStyle.Bold);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -211,24 +241,13 @@ namespace JJLab04
         private void zModeluYUVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Color pxl;
-            int szary;
-            double R,G,B;
-            int Ri, Gi, Bi;
-
             for (int i = 0; i < wysokosc; i++)
             {
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    R = pxl.R*0.299;
-                    G = pxl.G*0.587;
-                    B = pxl.B*0.114;
-                    Ri = (int)Math.Round(R);
-                    Gi = (int)Math.Round(G);
-                    Bi = (int)Math.Round(B);
-
-                    szary = (Ri+Gi+Bi);
-                    pxl = Color.FromArgb(szary, szary, szary);
+                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    pxl = Color.FromArgb(y, y, y);
                     obrazekCopy.SetPixel(j, i, pxl);
                 }
             }
@@ -243,30 +262,60 @@ namespace JJLab04
 
             if(isAtuomatic == true)
             {
-
-            }
-            else
-            {
+                int[] tablicaszarosci = new int[256];
                 Color pxl;
-                int szary;
-                double R, G, B;
-                int Ri, Gi, Bi;
-
+                int max = 0;
+                int maxi = 0;
                 for (int i = 0; i < wysokosc; i++)
                 {
                     for (int j = 0; j < szerokosc; j++)
                     {
                         pxl = obrazekCopy.GetPixel(j, i);
-                        R = pxl.R * 0.299;
-                        G = pxl.G * 0.587;
-                        B = pxl.B * 0.114;
-                        Ri = (int)Math.Round(R);
-                        Gi = (int)Math.Round(G);
-                        Bi = (int)Math.Round(B);
+                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                        tablicaszarosci[y]++;
+                    }
+                }
+                for(int i = 0; i < 256; i++)
+                {
+                    if (tablicaszarosci[i] > max)
+                    {
+                        max = tablicaszarosci[i];
+                        maxi = i;
+                    }
+                }
+                for (int i = 0; i < wysokosc; i++)
+                {
+                    for (int j = 0; j < szerokosc; j++)
+                    {
+                        pxl = obrazekCopy.GetPixel(j, i);
+                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
 
-                        szary = (Ri + Gi + Bi);
+                        if (y >= maxi)
+                        {
+                            pxl = Color.FromArgb(255, 255, 255);
+                        }
+                        else
+                        {
+                            pxl = Color.FromArgb(0, 0, 0);
+                        }
+                        obrazekCopy.SetPixel(j, i, pxl);
+                    }
+                }
+                isAtuomatic = false;
+                pictureBoxResult.Image = obrazekCopy;
 
-                        if(szary >= prog) {
+            }
+            else
+            {
+                Color pxl;
+                for (int i = 0; i < wysokosc; i++)
+                {
+                    for (int j = 0; j < szerokosc; j++)
+                    {
+                        pxl = obrazekCopy.GetPixel(j, i);
+                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
+
+                        if (y >= prog) {
                             pxl = Color.FromArgb(255, 255, 255);
                         }
                         else
@@ -285,30 +334,17 @@ namespace JJLab04
         {
             Color pxl;
             int szary,szary2,szary3;
-            double R, G, B;
-            int Ri, Gi, Bi;
-
             for (int i = 0; i < wysokosc; i++)
             {
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    R = pxl.R * 0.299;
-                    G = pxl.G * 0.587;
-                    B = pxl.B * 0.114;
-                    Ri = (int)Math.Round(R);
-                    Gi = (int)Math.Round(G);
-                    Bi = (int)Math.Round(B);
-                    szary = (Ri + Gi + Bi);
+                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    szary = y;
 
                     pxl = obrazekOdejm.GetPixel(j, i);
-                    R = pxl.R * 0.299;
-                    G = pxl.G * 0.587;
-                    B = pxl.B * 0.114;
-                    Ri = (int)Math.Round(R);
-                    Gi = (int)Math.Round(G);
-                    Bi = (int)Math.Round(B);
-                    szary2 = (Ri + Gi + Bi);
+                    FromRGBtoYUV(pxl, out y, out u, out v);
+                    szary2 = y;
 
                     szary3 = szary - szary2;
                     if (szary3 < 0)
@@ -321,6 +357,37 @@ namespace JJLab04
                 }
             }
             pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int[] tablicaszarosci = new int[256];
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    tablicaszarosci[y]++;
+                }
+            }
+            for (int i = 0; i < 256; i++)
+            {
+                chart1.Series["Szarosc"].Points.AddXY(i, tablicaszarosci[i]);
+                tablicaszarosci[i] = 0;
+            }
+            
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void multiProgowanieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void PictureButton3_Click(object sender, EventArgs e)
