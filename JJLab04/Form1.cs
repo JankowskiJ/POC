@@ -363,6 +363,7 @@ namespace JJLab04
         {
             int[] tablicaszarosci = new int[256];
             Color pxl;
+            chart1.Series["Szarosc"].Points.Clear();
             for (int i = 0; i < wysokosc; i++)
             {
                 for (int j = 0; j < szerokosc; j++)
@@ -388,6 +389,38 @@ namespace JJLab04
         private void multiProgowanieToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    pxl = Color.FromArgb(y, y, y);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void uToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void filtracjaLiniowaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltracjaLiniowa filtracjaLiniowa = new FiltracjaLiniowa();
+            filtracjaLiniowa.ShowDialog();
         }
 
         private void PictureButton3_Click(object sender, EventArgs e)

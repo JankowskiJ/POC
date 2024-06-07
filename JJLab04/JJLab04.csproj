@@ -12,7 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-	<UseWindowsForms>true</UseWindowsForms>
+    <UseWindowsForms>true</UseWindowsForms>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FiltracjaLiniowa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FiltracjaLiniowa.Designer.cs">
+      <DependentUpon>FiltracjaLiniowa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FiltracjaNieliniowa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FiltracjaNieliniowa.Designer.cs">
+      <DependentUpon>FiltracjaNieliniowa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiProgowaniePopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiProgowaniePopUp.Designer.cs">
+      <DependentUpon>MultiProgowaniePopUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FiltracjaLiniowa.resx">
+      <DependentUpon>FiltracjaLiniowa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
