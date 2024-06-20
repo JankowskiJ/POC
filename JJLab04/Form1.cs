@@ -17,10 +17,13 @@ namespace JJLab04
         Bitmap obrazekOrginal;
         Bitmap obrazekCopy;
         Bitmap obrazekOdejm;
+        Bitmap obrazekCopy2;
         int obrazekOdejmW, obrazekOdejmS;
         int wysokosc;
         int szerokosc;
         public static int prog = 0;
+        public static int progD = 0;
+        public static int progG = 0;
         public static bool isAtuomatic = false;
         public Form1()
         {
@@ -87,6 +90,7 @@ namespace JJLab04
                 pictureBoxOriginal.Image = Image.FromFile(okienko.FileName);
             obrazekOrginal = (Bitmap)pictureBoxOriginal.Image;
             obrazekCopy = new Bitmap(obrazekOrginal);
+            obrazekCopy2 = new Bitmap(obrazekOrginal);
             wysokosc = obrazekCopy.Height;
             szerokosc = obrazekCopy.Width;
             pictureBoxResult.Image = obrazekCopy;
@@ -392,6 +396,29 @@ namespace JJLab04
 
         private void multiProgowanieToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MultiProgowaniePopUp multiProgowaniePopUp = new MultiProgowaniePopUp();
+            multiProgowaniePopUp.ShowDialog();
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+
+                    if (y <= progG && y>=progD)
+                    {
+                        pxl = Color.FromArgb(255, 255, 255);
+                    }
+                    else
+                    {
+                        pxl = Color.FromArgb(0, 0, 0);
+                    }
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+
 
         }
 
@@ -434,8 +461,6 @@ namespace JJLab04
 
         private void filtracjaLiniowaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FiltracjaLiniowa filtracjaLiniowa = new FiltracjaLiniowa();
-            filtracjaLiniowa.ShowDialog();
         }
 
         private void vToolStripMenuItem_Click(object sender, EventArgs e)
@@ -470,12 +495,384 @@ namespace JJLab04
 
         }
 
+        private void krawedzieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary, szary2, szary3;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                    szary = y;
+
+                    int shiftedX = j + 1;
+                    if (shiftedX >= szerokosc) shiftedX = szerokosc - 1; 
+                    pxl = obrazekCopy2.GetPixel(shiftedX, i);
+                    FromRGBtoYUV(pxl, out y, out u, out v);
+                    szary2 = y;
+
+                    szary3 = szary - szary2;
+                    if (szary3 < 0)
+                    {
+                        szary3 = 0;
+                    }
+
+                    // Ustaw nowy piksel w obrazie wynikowym
+                    pxl = Color.FromArgb(szary3, szary3, szary3);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void pionoweToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary, szary2, szary3;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                    szary = y;
+
+                    int shiftedY = i + 1;
+                    if (shiftedY >= wysokosc) shiftedY = wysokosc - 1;
+                    pxl = obrazekCopy2.GetPixel(j, shiftedY);
+                    FromRGBtoYUV(pxl, out y, out u, out v);
+                    szary2 = y;
+
+                    szary3 = szary - szary2;
+                    if (szary3 < 0)
+                    {
+                        szary3 = 0;
+                    }
+
+                    // Ustaw nowy piksel w obrazie wynikowym
+                    pxl = Color.FromArgb(szary3, szary3, szary3);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void ukosneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            int szary, szary2, szary3;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                    szary = y;
+
+                    int shiftedX = j + 1;
+                    int shiftedY = i + 1;
+                    if (shiftedX >= szerokosc) shiftedX = szerokosc - 1;
+                    if (shiftedY >= wysokosc) shiftedY = wysokosc - 1;
+                    pxl = obrazekCopy2.GetPixel(shiftedX, shiftedY);
+                    FromRGBtoYUV(pxl, out y, out u, out v);
+                    szary2 = y;
+
+                    szary3 = szary - szary2;
+                    if (szary3 < 0)
+                    {
+                        szary3 = 0;
+                    }
+
+                    pxl = Color.FromArgb(szary3, szary3, szary3);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Color pxl;
+            int r1, g1, b1,r2,g2,b2;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    r1 = pxl.R;
+                    g1 = pxl.G;
+                    b1 = pxl.B;
+
+
+                    pxl = obrazekOdejm.GetPixel(j, i);
+                    r2 = pxl.R;
+                    g2 = pxl.G;
+                    b2 = pxl.B;
+
+                    r1 = r1 + r2;
+                    g1 = g1 + g2;
+                    b1 = b1 + b2;
+                    if(r1 > 255)
+                    {
+                        r1 = 255;
+                    }
+                    if (g1 > 255)
+                    {
+                        g1 = 255;
+                    }
+                    if (b1 > 255)
+                    {
+                        b1 = 255;
+                    }
+
+                    pxl = Color.FromArgb(r1, g1, b1);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+        public static double[,] HighPassFilter3x3 = new double[,]
+        {
+            { (-1), (-1), (-1) },
+            { (-1),  9, (-1) },
+            { (-1), (-1), (-1) }
+         };
+        public static double[,] LowPassFilter3x3 = new double[,]
+       {
+            { 1, 1, 1 },
+            { 1,  1, 1 },
+            { 1, 1, 1 }
+        };
+        public static double[,] PoziomeFilter3x3 = new double[,]
+       {
+            { 0, 0, 0 },
+            { -1,  1, 0 },
+            { 0, 0, 0 }
+        };
+        public static double[,] PionoweFilter3x3 = new double[,]
+      {
+            { 0, 0, 0 },
+            { -1,  1, 0 },
+            { 0, 0, 0 }
+       };
+        public static double[,] UkosneFilter3x3 = new double[,]
+      {
+            { -1, 0, 0 },
+            { 0,  1, 0 },
+            { 0, 0, 0 }
+       };
+        private void górnoprzepustowyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    double rdouble = 0;
+                    double gdouble = 0;
+                    double bdouble = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rdouble += (pxl.R * HighPassFilter3x3[x, y]);
+                            gdouble += (pxl.G * HighPassFilter3x3[x, y]);
+                            bdouble += (pxl.B * HighPassFilter3x3[x, y]);
+                        }
+                    }           
+                    int r = Math.Max(0, Math.Min(255, (int)rdouble));
+                    int g = Math.Max(0, Math.Min(255, (int)gdouble));
+                    int b = Math.Max(0, Math.Min(255, (int)bdouble));
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void dolnoprzepustowyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    double rdouble = 0;
+                    double gdouble = 0;
+                    double bdouble = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rdouble += (pxl.R * LowPassFilter3x3[x, y]);
+                            gdouble += (pxl.G * LowPassFilter3x3[x, y]);
+                            bdouble += (pxl.B * LowPassFilter3x3[x, y]);
+                        }
+                    }
+                    rdouble = rdouble / 9;
+                    gdouble = gdouble / 9;
+                    bdouble = bdouble / 9;
+
+                    int r = Math.Max(0, Math.Min(255, (int)rdouble));
+                    int g = Math.Max(0, Math.Min(255, (int)gdouble));
+                    int b = Math.Max(0, Math.Min(255, (int)bdouble));
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void poziomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    double rdouble = 0;
+                    double gdouble = 0;
+                    double bdouble = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rdouble += (pxl.R * PoziomeFilter3x3[x, y]);
+                            gdouble += (pxl.G * PoziomeFilter3x3[x, y]);
+                            bdouble += (pxl.B * PoziomeFilter3x3[x, y]);
+                        }
+                    }
+                    int r = Math.Max(0, Math.Min(255, (int)rdouble));
+                    int g = Math.Max(0, Math.Min(255, (int)gdouble));
+                    int b = Math.Max(0, Math.Min(255, (int)bdouble));
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void pionoweToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    double rdouble = 0;
+                    double gdouble = 0;
+                    double bdouble = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rdouble += (pxl.R * PionoweFilter3x3[x, y]);
+                            gdouble += (pxl.G * PionoweFilter3x3[x, y]);
+                            bdouble += (pxl.B * PionoweFilter3x3[x, y]);
+                        }
+                    }
+                    int r = Math.Max(0, Math.Min(255, (int)rdouble));
+                    int g = Math.Max(0, Math.Min(255, (int)gdouble));
+                    int b = Math.Max(0, Math.Min(255, (int)bdouble));
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void ukośneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    double rdouble = 0;
+                    double gdouble = 0;
+                    double bdouble = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rdouble += (pxl.R * UkosneFilter3x3[x, y]);
+                            gdouble += (pxl.G * UkosneFilter3x3[x, y]);
+                            bdouble += (pxl.B * UkosneFilter3x3[x, y]);
+                        }
+                    }
+                    int r = Math.Max(0, Math.Min(255, (int)rdouble));
+                    int g = Math.Max(0, Math.Min(255, (int)gdouble));
+                    int b = Math.Max(0, Math.Min(255, (int)bdouble));
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
         private void PictureButton3_Click(object sender, EventArgs e)
         {
             OpenFileDialog okienko = new OpenFileDialog();
             okienko.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp|TIFF|*.tif";
             if (okienko.ShowDialog() == DialogResult.OK && okienko.CheckFileExists == true)
-                pictureBoxOdejm.Image = Image.FromFile(okienko.FileName);
+            pictureBoxOdejm.Image = Image.FromFile(okienko.FileName);
             obrazekOdejm = (Bitmap)pictureBoxOdejm.Image;
         }
     }

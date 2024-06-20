@@ -58,6 +58,11 @@
             // LicznikProg
             // 
             this.LicznikProg.Location = new System.Drawing.Point(30, 86);
+            this.LicznikProg.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.LicznikProg.Name = "LicznikProg";
             this.LicznikProg.Size = new System.Drawing.Size(120, 20);
             this.LicznikProg.TabIndex = 3;
@@ -70,6 +75,7 @@
             this.label1.Size = new System.Drawing.Size(187, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Podaj próg albo wybierz automatyczny";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ProgowaniePopUp
             // 

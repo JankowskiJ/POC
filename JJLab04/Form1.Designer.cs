@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBoxResult = new System.Windows.Forms.PictureBox();
             this.pictureBoxOriginal = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,6 +66,15 @@
             this.pictureBoxOdejm = new System.Windows.Forms.PictureBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.HSVLabel = new System.Windows.Forms.Label();
+            this.krawedzieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pionoweToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ukosneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.górnoprzepustowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dolnoprzepustowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poziomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pionoweToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ukośneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -75,9 +84,9 @@
             // 
             // pictureBoxResult
             // 
-            this.pictureBoxResult.Location = new System.Drawing.Point(545, 70);
+            this.pictureBoxResult.Location = new System.Drawing.Point(426, 70);
             this.pictureBoxResult.Name = "pictureBoxResult";
-            this.pictureBoxResult.Size = new System.Drawing.Size(308, 307);
+            this.pictureBoxResult.Size = new System.Drawing.Size(427, 307);
             this.pictureBoxResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxResult.TabIndex = 0;
             this.pictureBoxResult.TabStop = false;
@@ -307,12 +316,15 @@
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.odejmowanieToolStripMenuItem});
+            this.odejmowanieToolStripMenuItem,
+            this.krawedzieToolStripMenuItem,
+            this.pionoweToolStripMenuItem,
+            this.ukosneToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(51, 22);
-            this.toolStripDropDownButton1.Text = "Lab04";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(48, 22);
+            this.toolStripDropDownButton1.Text = "lab04";
             // 
             // odejmowanieToolStripMenuItem
             // 
@@ -336,8 +348,14 @@
             // 
             // filtracjaLiniowaToolStripMenuItem
             // 
+            this.filtracjaLiniowaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.górnoprzepustowyToolStripMenuItem,
+            this.dolnoprzepustowyToolStripMenuItem,
+            this.poziomeToolStripMenuItem,
+            this.pionoweToolStripMenuItem1,
+            this.ukośneToolStripMenuItem});
             this.filtracjaLiniowaToolStripMenuItem.Name = "filtracjaLiniowaToolStripMenuItem";
-            this.filtracjaLiniowaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.filtracjaLiniowaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filtracjaLiniowaToolStripMenuItem.Text = "Filtracja Liniowa";
             this.filtracjaLiniowaToolStripMenuItem.Click += new System.EventHandler(this.filtracjaLiniowaToolStripMenuItem_Click);
             // 
@@ -353,7 +371,7 @@
             this.PictureButton3.Name = "PictureButton3";
             this.PictureButton3.Size = new System.Drawing.Size(148, 23);
             this.PictureButton3.TabIndex = 13;
-            this.PictureButton3.Text = "Wgraj Odejmowany obraz";
+            this.PictureButton3.Text = "Wgraj Dodatkowy obraz";
             this.PictureButton3.UseVisualStyleBackColor = true;
             this.PictureButton3.Click += new System.EventHandler(this.PictureButton3_Click);
             // 
@@ -368,17 +386,17 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea17.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea17);
+            legend17.Name = "Legend1";
+            this.chart1.Legends.Add(legend17);
             this.chart1.Location = new System.Drawing.Point(881, 70);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Szarosc";
-            this.chart1.Series.Add(series2);
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series17.Legend = "Legend1";
+            series17.Name = "Szarosc";
+            this.chart1.Series.Add(series17);
             this.chart1.Size = new System.Drawing.Size(373, 307);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
@@ -392,11 +410,78 @@
             this.HSVLabel.Size = new System.Drawing.Size(0, 13);
             this.HSVLabel.TabIndex = 16;
             // 
+            // krawedzieToolStripMenuItem
+            // 
+            this.krawedzieToolStripMenuItem.Name = "krawedzieToolStripMenuItem";
+            this.krawedzieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.krawedzieToolStripMenuItem.Text = "Poziome";
+            this.krawedzieToolStripMenuItem.Click += new System.EventHandler(this.krawedzieToolStripMenuItem_Click);
+            // 
+            // pionoweToolStripMenuItem
+            // 
+            this.pionoweToolStripMenuItem.Name = "pionoweToolStripMenuItem";
+            this.pionoweToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pionoweToolStripMenuItem.Text = "Pionowe";
+            this.pionoweToolStripMenuItem.Click += new System.EventHandler(this.pionoweToolStripMenuItem_Click);
+            // 
+            // ukosneToolStripMenuItem
+            // 
+            this.ukosneToolStripMenuItem.Name = "ukosneToolStripMenuItem";
+            this.ukosneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ukosneToolStripMenuItem.Text = "Ukosne";
+            this.ukosneToolStripMenuItem.Click += new System.EventHandler(this.ukosneToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(630, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Dodawanie obrazków";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // górnoprzepustowyToolStripMenuItem
+            // 
+            this.górnoprzepustowyToolStripMenuItem.Name = "górnoprzepustowyToolStripMenuItem";
+            this.górnoprzepustowyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.górnoprzepustowyToolStripMenuItem.Text = "górnoprzepustowy";
+            this.górnoprzepustowyToolStripMenuItem.Click += new System.EventHandler(this.górnoprzepustowyToolStripMenuItem_Click);
+            // 
+            // dolnoprzepustowyToolStripMenuItem
+            // 
+            this.dolnoprzepustowyToolStripMenuItem.Name = "dolnoprzepustowyToolStripMenuItem";
+            this.dolnoprzepustowyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dolnoprzepustowyToolStripMenuItem.Text = "dolnoprzepustowy";
+            this.dolnoprzepustowyToolStripMenuItem.Click += new System.EventHandler(this.dolnoprzepustowyToolStripMenuItem_Click);
+            // 
+            // poziomeToolStripMenuItem
+            // 
+            this.poziomeToolStripMenuItem.Name = "poziomeToolStripMenuItem";
+            this.poziomeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.poziomeToolStripMenuItem.Text = "poziome";
+            this.poziomeToolStripMenuItem.Click += new System.EventHandler(this.poziomeToolStripMenuItem_Click);
+            // 
+            // pionoweToolStripMenuItem1
+            // 
+            this.pionoweToolStripMenuItem1.Name = "pionoweToolStripMenuItem1";
+            this.pionoweToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pionoweToolStripMenuItem1.Text = "pionowe ";
+            this.pionoweToolStripMenuItem1.Click += new System.EventHandler(this.pionoweToolStripMenuItem1_Click);
+            // 
+            // ukośneToolStripMenuItem
+            // 
+            this.ukośneToolStripMenuItem.Name = "ukośneToolStripMenuItem";
+            this.ukośneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ukośneToolStripMenuItem.Text = "ukośne";
+            this.ukośneToolStripMenuItem.Click += new System.EventHandler(this.ukośneToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 572);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.HSVLabel);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.pictureBoxOdejm);
@@ -460,6 +545,15 @@
         private System.Windows.Forms.ToolStripMenuItem filtracjaLiniowaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filtracjaNieliniowaToolStripMenuItem;
         private System.Windows.Forms.Label HSVLabel;
+        private System.Windows.Forms.ToolStripMenuItem krawedzieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pionoweToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ukosneToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem górnoprzepustowyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dolnoprzepustowyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem poziomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pionoweToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ukośneToolStripMenuItem;
     }
 }
 

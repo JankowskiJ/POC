@@ -16,5 +16,24 @@ namespace JJLab04
         {
             InitializeComponent();
         }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String LicznikDolny = LicznikProgDolny.Value.ToString();
+            String LicznikGorny = LicznikProgGorny.Value.ToString();
+            Form1.progD = Int32.Parse(LicznikDolny);
+            Form1.progG = Int32.Parse(LicznikGorny);
+            this.Close();
+        }
     }
 }
