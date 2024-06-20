@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBoxResult = new System.Windows.Forms.PictureBox();
             this.pictureBoxOriginal = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,25 +49,23 @@
             this.metodaSredniejToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zModeluYUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.multiProgowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.odejmowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PictureButton3 = new System.Windows.Forms.Button();
-            this.pictureBoxOdejm = new System.Windows.Forms.PictureBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lab05 = new System.Windows.Forms.ToolStripDropDownButton();
             this.yUVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.progowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiProgowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.odejmowanieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab05 = new System.Windows.Forms.ToolStripDropDownButton();
             this.filtracjaLiniowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtracjaNieliniowaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PictureButton3 = new System.Windows.Forms.Button();
+            this.pictureBoxOdejm = new System.Windows.Forms.PictureBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.HSVLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -185,21 +183,21 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(82, 22);
             this.toolStripMenuItem1.Text = "R";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(82, 22);
             this.toolStripMenuItem2.Text = "G";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(82, 22);
             this.toolStripMenuItem3.Text = "B";
             this.toolStripMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
@@ -241,6 +239,44 @@
             this.histogramToolStripMenuItem.Text = "Histogram";
             this.histogramToolStripMenuItem.Click += new System.EventHandler(this.histogramToolStripMenuItem_Click);
             // 
+            // yUVToolStripMenuItem
+            // 
+            this.yUVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yToolStripMenuItem,
+            this.uToolStripMenuItem,
+            this.vToolStripMenuItem});
+            this.yUVToolStripMenuItem.Name = "yUVToolStripMenuItem";
+            this.yUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yUVToolStripMenuItem.Text = "YUV";
+            // 
+            // yToolStripMenuItem
+            // 
+            this.yToolStripMenuItem.Name = "yToolStripMenuItem";
+            this.yToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yToolStripMenuItem.Text = "Y";
+            this.yToolStripMenuItem.Click += new System.EventHandler(this.yToolStripMenuItem_Click);
+            // 
+            // uToolStripMenuItem
+            // 
+            this.uToolStripMenuItem.Name = "uToolStripMenuItem";
+            this.uToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uToolStripMenuItem.Text = "U";
+            this.uToolStripMenuItem.Click += new System.EventHandler(this.uToolStripMenuItem_Click);
+            // 
+            // vToolStripMenuItem
+            // 
+            this.vToolStripMenuItem.Name = "vToolStripMenuItem";
+            this.vToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vToolStripMenuItem.Text = "V";
+            this.vToolStripMenuItem.Click += new System.EventHandler(this.vToolStripMenuItem_Click);
+            // 
+            // hSVToolStripMenuItem
+            // 
+            this.hSVToolStripMenuItem.Name = "hSVToolStripMenuItem";
+            this.hSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hSVToolStripMenuItem.Text = "HSV";
+            this.hSVToolStripMenuItem.Click += new System.EventHandler(this.hSVToolStripMenuItem_Click_1);
+            // 
             // toolStripSplitButton1
             // 
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -281,9 +317,35 @@
             // odejmowanieToolStripMenuItem
             // 
             this.odejmowanieToolStripMenuItem.Name = "odejmowanieToolStripMenuItem";
-            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.odejmowanieToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.odejmowanieToolStripMenuItem.Text = "Odejmowanie";
             this.odejmowanieToolStripMenuItem.Click += new System.EventHandler(this.odejmowanieToolStripMenuItem_Click);
+            // 
+            // lab05
+            // 
+            this.lab05.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lab05.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filtracjaLiniowaToolStripMenuItem,
+            this.filtracjaNieliniowaToolStripMenuItem});
+            this.lab05.Image = ((System.Drawing.Image)(resources.GetObject("lab05.Image")));
+            this.lab05.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lab05.Name = "lab05";
+            this.lab05.Size = new System.Drawing.Size(48, 22);
+            this.lab05.Text = "lab05";
+            this.lab05.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // filtracjaLiniowaToolStripMenuItem
+            // 
+            this.filtracjaLiniowaToolStripMenuItem.Name = "filtracjaLiniowaToolStripMenuItem";
+            this.filtracjaLiniowaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.filtracjaLiniowaToolStripMenuItem.Text = "Filtracja Liniowa";
+            this.filtracjaLiniowaToolStripMenuItem.Click += new System.EventHandler(this.filtracjaLiniowaToolStripMenuItem_Click);
+            // 
+            // filtracjaNieliniowaToolStripMenuItem
+            // 
+            this.filtracjaNieliniowaToolStripMenuItem.Name = "filtracjaNieliniowaToolStripMenuItem";
+            this.filtracjaNieliniowaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.filtracjaNieliniowaToolStripMenuItem.Text = "Filtracja Nieliniowa";
             // 
             // PictureButton3
             // 
@@ -306,111 +368,36 @@
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(881, 70);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Szarosc";
-            this.chart1.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Szarosc";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(373, 307);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
-            // lab05
+            // HSVLabel
             // 
-            this.lab05.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.lab05.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filtracjaLiniowaToolStripMenuItem,
-            this.filtracjaNieliniowaToolStripMenuItem});
-            this.lab05.Image = ((System.Drawing.Image)(resources.GetObject("lab05.Image")));
-            this.lab05.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lab05.Name = "lab05";
-            this.lab05.Size = new System.Drawing.Size(48, 22);
-            this.lab05.Text = "lab05";
-            this.lab05.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // yUVToolStripMenuItem
-            // 
-            this.yUVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yToolStripMenuItem,
-            this.uToolStripMenuItem,
-            this.vToolStripMenuItem});
-            this.yUVToolStripMenuItem.Name = "yUVToolStripMenuItem";
-            this.yUVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.yUVToolStripMenuItem.Text = "YUV";
-            // 
-            // yToolStripMenuItem
-            // 
-            this.yToolStripMenuItem.Name = "yToolStripMenuItem";
-            this.yToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.yToolStripMenuItem.Text = "Y";
-            this.yToolStripMenuItem.Click += new System.EventHandler(this.yToolStripMenuItem_Click);
-            // 
-            // uToolStripMenuItem
-            // 
-            this.uToolStripMenuItem.Name = "uToolStripMenuItem";
-            this.uToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uToolStripMenuItem.Text = "U";
-            this.uToolStripMenuItem.Click += new System.EventHandler(this.uToolStripMenuItem_Click);
-            // 
-            // vToolStripMenuItem
-            // 
-            this.vToolStripMenuItem.Name = "vToolStripMenuItem";
-            this.vToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.vToolStripMenuItem.Text = "V";
-            // 
-            // hSVToolStripMenuItem
-            // 
-            this.hSVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hToolStripMenuItem,
-            this.sToolStripMenuItem,
-            this.vToolStripMenuItem1});
-            this.hSVToolStripMenuItem.Name = "hSVToolStripMenuItem";
-            this.hSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hSVToolStripMenuItem.Text = "HSV";
-            // 
-            // hToolStripMenuItem
-            // 
-            this.hToolStripMenuItem.Name = "hToolStripMenuItem";
-            this.hToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hToolStripMenuItem.Text = "H";
-            // 
-            // sToolStripMenuItem
-            // 
-            this.sToolStripMenuItem.Name = "sToolStripMenuItem";
-            this.sToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sToolStripMenuItem.Text = "S";
-            // 
-            // vToolStripMenuItem1
-            // 
-            this.vToolStripMenuItem1.Name = "vToolStripMenuItem1";
-            this.vToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.vToolStripMenuItem1.Text = "V";
-            // 
-            // filtracjaLiniowaToolStripMenuItem
-            // 
-            this.filtracjaLiniowaToolStripMenuItem.Name = "filtracjaLiniowaToolStripMenuItem";
-            this.filtracjaLiniowaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.filtracjaLiniowaToolStripMenuItem.Text = "Filtracja Liniowa";
-            this.filtracjaLiniowaToolStripMenuItem.Click += new System.EventHandler(this.filtracjaLiniowaToolStripMenuItem_Click);
-            // 
-            // filtracjaNieliniowaToolStripMenuItem
-            // 
-            this.filtracjaNieliniowaToolStripMenuItem.Name = "filtracjaNieliniowaToolStripMenuItem";
-            this.filtracjaNieliniowaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.filtracjaNieliniowaToolStripMenuItem.Text = "Filtracja Nieliniowa";
+            this.HSVLabel.AutoSize = true;
+            this.HSVLabel.Location = new System.Drawing.Point(830, 414);
+            this.HSVLabel.Name = "HSVLabel";
+            this.HSVLabel.Size = new System.Drawing.Size(0, 13);
+            this.HSVLabel.TabIndex = 16;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 572);
+            this.Controls.Add(this.HSVLabel);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.pictureBoxOdejm);
             this.Controls.Add(this.PictureButton3);
@@ -470,11 +457,9 @@
         private System.Windows.Forms.ToolStripMenuItem uToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hSVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem filtracjaLiniowaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filtracjaNieliniowaToolStripMenuItem;
+        private System.Windows.Forms.Label HSVLabel;
     }
 }
 

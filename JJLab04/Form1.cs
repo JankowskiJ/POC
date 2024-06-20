@@ -26,20 +26,23 @@ namespace JJLab04
         {
             InitializeComponent();
         }
-
-        private static void FromRGBtoHSV(Color orginal,out double hue,out double saturation,out double value)
+        private static void FromRGBtoHSV(Color orginal, out double hue, out double saturation, out double value)
         {
             hue = orginal.GetHue();
             saturation = orginal.GetSaturation();
             value = orginal.GetBrightness();
         }
 
-        private static void FromRGBtoYUV(Color orginal, out int y, out double u, out double v)
+        private static void FromRGBtoYUV(Color orginal, out int y, out int u, out int v)
         {
             double yDouble = (orginal.R * 0.299 + orginal.G * 0.587 + orginal.B * 0.114);
-            y = (int)Math.Round(yDouble);
-            u = (0.493 * (orginal.B - y));
-            v = (0.877 * (orginal.R - y));
+            double uDouble = (0.493 * (orginal.B - yDouble)) + 180;
+            double vDouble = (0.877 * (orginal.R - yDouble)) + 180;
+
+            y = Math.Max(0, Math.Min(255, (int)yDouble));
+            u = Math.Max(0, Math.Min(255, (int)uDouble));
+            v = Math.Max(0, Math.Min(255, (int)vDouble));
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -95,7 +98,7 @@ namespace JJLab04
 
         }
 
-     
+
 
         private void Zapisz_Click(object sender, EventArgs e)
         {
@@ -204,13 +207,13 @@ namespace JJLab04
         private void hSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float[] hsv = new float[3];
-            
+
 
         }
 
         private void yUVToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -246,7 +249,7 @@ namespace JJLab04
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
                     pxl = Color.FromArgb(y, y, y);
                     obrazekCopy.SetPixel(j, i, pxl);
                 }
@@ -260,7 +263,7 @@ namespace JJLab04
             ProgowaniePopUp progowanie = new ProgowaniePopUp();
             progowanie.ShowDialog();
 
-            if(isAtuomatic == true)
+            if (isAtuomatic == true)
             {
                 int[] tablicaszarosci = new int[256];
                 Color pxl;
@@ -271,11 +274,11 @@ namespace JJLab04
                     for (int j = 0; j < szerokosc; j++)
                     {
                         pxl = obrazekCopy.GetPixel(j, i);
-                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                        FromRGBtoYUV(pxl, out int y, out int u, out int v);
                         tablicaszarosci[y]++;
                     }
                 }
-                for(int i = 0; i < 256; i++)
+                for (int i = 0; i < 256; i++)
                 {
                     if (tablicaszarosci[i] > max)
                     {
@@ -288,7 +291,7 @@ namespace JJLab04
                     for (int j = 0; j < szerokosc; j++)
                     {
                         pxl = obrazekCopy.GetPixel(j, i);
-                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                        FromRGBtoYUV(pxl, out int y, out int u, out int v);
 
                         if (y >= maxi)
                         {
@@ -313,9 +316,10 @@ namespace JJLab04
                     for (int j = 0; j < szerokosc; j++)
                     {
                         pxl = obrazekCopy.GetPixel(j, i);
-                        FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                        FromRGBtoYUV(pxl, out int y, out int u, out int v);
 
-                        if (y >= prog) {
+                        if (y >= prog)
+                        {
                             pxl = Color.FromArgb(255, 255, 255);
                         }
                         else
@@ -333,13 +337,13 @@ namespace JJLab04
         private void odejmowanieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Color pxl;
-            int szary,szary2,szary3;
+            int szary, szary2, szary3;
             for (int i = 0; i < wysokosc; i++)
             {
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
                     szary = y;
 
                     pxl = obrazekOdejm.GetPixel(j, i);
@@ -369,7 +373,7 @@ namespace JJLab04
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
                     tablicaszarosci[y]++;
                 }
             }
@@ -378,7 +382,7 @@ namespace JJLab04
                 chart1.Series["Szarosc"].Points.AddXY(i, tablicaszarosci[i]);
                 tablicaszarosci[i] = 0;
             }
-            
+
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -404,7 +408,7 @@ namespace JJLab04
                 for (int j = 0; j < szerokosc; j++)
                 {
                     pxl = obrazekCopy.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out int y, out double u, out double v);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
                     pxl = Color.FromArgb(y, y, y);
                     obrazekCopy.SetPixel(j, i, pxl);
                 }
@@ -414,13 +418,56 @@ namespace JJLab04
 
         private void uToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                    pxl = Color.FromArgb(0, v, u);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
         }
 
         private void filtracjaLiniowaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FiltracjaLiniowa filtracjaLiniowa = new FiltracjaLiniowa();
             filtracjaLiniowa.ShowDialog();
+        }
+
+        private void vToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    pxl = obrazekCopy.GetPixel(j, i);
+                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                    pxl = Color.FromArgb(v, u, 0);
+                    obrazekCopy.SetPixel(j, i, pxl);
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+
+        }
+
+        private void hToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hSVToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Color pxl;
+
+            pxl = obrazekCopy.GetPixel(1, 1);
+            FromRGBtoHSV(pxl, out double hue, out double saturation, out double value);
+            HSVLabel.Text = "Hue: " + hue + " Saturation: " + saturation + " Value: " + value;
+
         }
 
         private void PictureButton3_Click(object sender, EventArgs e)
