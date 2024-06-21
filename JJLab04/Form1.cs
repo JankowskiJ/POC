@@ -89,12 +89,14 @@ namespace JJLab04
             if (okienko.ShowDialog() == DialogResult.OK && okienko.CheckFileExists == true)
                 pictureBoxOriginal.Image = Image.FromFile(okienko.FileName);
             obrazekOrginal = (Bitmap)pictureBoxOriginal.Image;
-            obrazekCopy = new Bitmap(obrazekOrginal);
-            obrazekCopy2 = new Bitmap(obrazekOrginal);
-            wysokosc = obrazekCopy.Height;
-            szerokosc = obrazekCopy.Width;
-            pictureBoxResult.Image = obrazekCopy;
-
+            if(obrazekOrginal != null)
+            {
+                obrazekCopy = new Bitmap(obrazekOrginal);
+                obrazekCopy2 = new Bitmap(obrazekOrginal);
+                wysokosc = obrazekCopy.Height;
+                szerokosc = obrazekCopy.Width;
+                pictureBoxResult.Image = obrazekCopy;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -118,8 +120,11 @@ namespace JJLab04
 
         private void Reset_Click(object sender, EventArgs e)
         {
-            obrazekCopy = new Bitmap(obrazekOrginal);
-            pictureBoxResult.Image = obrazekCopy;
+            if(obrazekOrginal != null)
+            {
+                obrazekCopy = new Bitmap(obrazekOrginal);
+                pictureBoxResult.Image = obrazekCopy;
+            }
         }
 
         private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
@@ -340,31 +345,34 @@ namespace JJLab04
 
         private void odejmowanieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Color pxl;
-            int szary, szary2, szary3;
-            for (int i = 0; i < wysokosc; i++)
+            if(obrazekOdejm != null)
             {
-                for (int j = 0; j < szerokosc; j++)
+                Color pxl;
+                int szary, szary2, szary3;
+                for (int i = 0; i < wysokosc; i++)
                 {
-                    pxl = obrazekCopy.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out int y, out int u, out int v);
-                    szary = y;
-
-                    pxl = obrazekOdejm.GetPixel(j, i);
-                    FromRGBtoYUV(pxl, out y, out u, out v);
-                    szary2 = y;
-
-                    szary3 = szary - szary2;
-                    if (szary3 < 0)
+                    for (int j = 0; j < szerokosc; j++)
                     {
-                        szary3 = 0;
-                    }
+                        pxl = obrazekCopy.GetPixel(j, i);
+                        FromRGBtoYUV(pxl, out int y, out int u, out int v);
+                        szary = y;
 
-                    pxl = Color.FromArgb(szary3, szary3, szary3);
-                    obrazekCopy.SetPixel(j, i, pxl);
+                        pxl = obrazekOdejm.GetPixel(j, i);
+                        FromRGBtoYUV(pxl, out y, out u, out v);
+                        szary2 = y;
+
+                        szary3 = szary - szary2;
+                        if (szary3 < 0)
+                        {
+                            szary3 = 0;
+                        }
+
+                        pxl = Color.FromArgb(szary3, szary3, szary3);
+                        obrazekCopy.SetPixel(j, i, pxl);
+                    }
                 }
+                pictureBoxResult.Image = obrazekCopy;
             }
-            pictureBoxResult.Image = obrazekCopy;
         }
 
         private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -487,12 +495,14 @@ namespace JJLab04
 
         private void hSVToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Color pxl;
-
-            pxl = obrazekCopy.GetPixel(1, 1);
-            FromRGBtoHSV(pxl, out double hue, out double saturation, out double value);
-            HSVLabel.Text = "Hue: " + hue + " Saturation: " + saturation + " Value: " + value;
-
+            if(obrazekOrginal != null)
+            {
+                Color pxl;
+                double hue, saturation, value;
+                pxl = obrazekCopy.GetPixel(1, 1);
+                FromRGBtoHSV(pxl, out hue, out saturation, out value);
+                HSVLabel.Text = "Hue: " + hue + " Saturation: " + saturation + " Value: " + value;
+            }
         }
 
         private void krawedzieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -867,6 +877,147 @@ namespace JJLab04
             }
             pictureBoxResult.Image = obrazekCopy;
         }
+
+        private void medianaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    int[] rlista = new int[9];
+                    int[] glista = new int[9];
+                    int[] blista = new int[9];
+                    int licznik = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rlista[licznik] = pxl.R;
+                            glista[licznik] = pxl.G;
+                            blista[licznik] = pxl.B;
+                            licznik++;
+                        }
+                    }
+                    Array.Sort(rlista);
+                    Array.Sort(glista);
+                    Array.Sort(blista);
+                    int r = rlista[4];
+                    int g = glista[4];
+                    int b = blista[4];
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void maxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    int[] rlista = new int[9];
+                    int[] glista = new int[9];
+                    int[] blista = new int[9];
+                    int licznik = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rlista[licznik] = pxl.R;
+                            glista[licznik] = pxl.G;
+                            blista[licznik] = pxl.B;
+                            licznik++;
+                        }
+                    }
+                    Array.Sort(rlista);
+                    Array.Sort(glista);
+                    Array.Sort(blista);
+                    int r = rlista[8];
+                    int g = glista[8];
+                    int b = blista[8];
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void minToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color pxl;
+            for (int i = 0; i < wysokosc; i++)
+            {
+                for (int j = 0; j < szerokosc; j++)
+                {
+                    int[] rlista = new int[9];
+                    int[] glista = new int[9];
+                    int[] blista = new int[9];
+                    int licznik = 0;
+
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            int i2 = i + x - 1;
+                            int j2 = j + y - 1;
+
+                            if (i2 < 0) i2 = 0;
+                            if (i2 >= wysokosc) i2 = wysokosc - 1;
+                            if (j2 < 0) j2 = 0;
+                            if (j2 >= szerokosc) j2 = szerokosc - 1;
+
+                            pxl = obrazekOrginal.GetPixel(j2, i2);
+                            rlista[licznik] = pxl.R;
+                            glista[licznik] = pxl.G;
+                            blista[licznik] = pxl.B;
+                            licznik++;
+                        }
+                    }
+                    Array.Sort(rlista);
+                    Array.Sort(glista);
+                    Array.Sort(blista);
+                    int r = rlista[0];
+                    int g = glista[0];
+                    int b = blista[0];
+                    pxl = Color.FromArgb(r, g, b);
+                    obrazekCopy.SetPixel(j, i, pxl);
+
+                }
+            }
+            pictureBoxResult.Image = obrazekCopy;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void PictureButton3_Click(object sender, EventArgs e)
         {
             OpenFileDialog okienko = new OpenFileDialog();
